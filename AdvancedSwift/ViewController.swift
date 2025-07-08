@@ -41,25 +41,45 @@ class ViewController: UIViewController {
         
         
 //        let fibs = [0, 1, 1, 2, 3, 5]
+//        fibs.indices
 //        fibs.reduce([:], <#T##nextPartialResult: (Result, Int) throws -> Result##(Result, Int) throws -> Result##(_ partialResult: Result, Int) throws -> Result#>)
 //        fibs.reduce(into: <#T##Result#>, <#T##updateAccumulatingResult: (inout Result, Int) throws -> ()##(inout Result, Int) throws -> ()##(_ partialResult: inout Result, Int) throws -> ()#>)
         
-        struct Person {
-            let name: String
-            let age: Int
+//        struct Person {
+//            let name: String
+//            let age: Int
+//        }
+//
+//        let people = [
+//            Person(name: "Alice", age: 25),
+//            Person(name: "Bob", age: 30),
+//            Person(name: "Charlie", age: 35)
+//        ]
+//
+//        // 使用 reduce(into:) 构建分组字典
+//        let groupedByAge = people.reduce(into: [String: [Person]]()) { acc, person in
+//            let ageGroup = person.age < 30 ? "young" : "mature"
+//            acc[ageGroup, default: []].append(person)
+//        }
+        
+        (1..<10).forEach { number in
+            print(number)
+            if number > 2 { return }
+            print("---------")
         }
-
-        let people = [
-            Person(name: "Alice", age: 25),
-            Person(name: "Bob", age: 30),
-            Person(name: "Charlie", age: 35)
-        ]
-
-        // 使用 reduce(into:) 构建分组字典
-        let groupedByAge = people.reduce(into: [String: [Person]]()) { acc, person in
-            let ageGroup = person.age < 30 ? "young" : "mature"
-            acc[ageGroup, default: []].append(person)
-        }
+        /*
+         1
+         ---------
+         2
+         ---------
+         3
+         4
+         5
+         6
+         7
+         8
+         9
+         */
     }
 }
 
@@ -90,3 +110,14 @@ extension Array {
         }
     }
 }
+
+//extension Array where Element: Equatable {
+//    func firstIndex_foreach(of element: Element) -> Int? {
+//        self.indices.filter { idx in
+//            self[idx] == element
+//        }.forEach { idx in
+//            return idx
+//        }
+//        return nil
+//    }
+//}
