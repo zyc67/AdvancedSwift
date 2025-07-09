@@ -41,6 +41,13 @@ class ViewController: UIViewController {
         
         
 //        let fibs = [0, 1, 1, 2, 3, 5]
+//        fibs.compactMap { <#Int#> in
+//            <#code#>
+//        }
+//        fibs.flatMap { <#Int#> in
+//            <#code#>
+//        }
+//        let flatMapped = fibs.flatMap { Array(repeating: $0, count: $0) }
 //        fibs.indices
 //        fibs.reduce([:], <#T##nextPartialResult: (Result, Int) throws -> Result##(Result, Int) throws -> Result##(_ partialResult: Result, Int) throws -> Result#>)
 //        fibs.reduce(into: <#T##Result#>, <#T##updateAccumulatingResult: (inout Result, Int) throws -> ()##(inout Result, Int) throws -> ()##(_ partialResult: inout Result, Int) throws -> ()#>)
@@ -96,38 +103,71 @@ class ViewController: UIViewController {
 //        let fff = Dictionary(eee, uniquingKeysWith: { (_, last) in last })
 //        print(fff)
         
-        var d1: [String : Any] = ["name": "ha", "age": 19]
-        var d2: [String : Any] = ["age": 20, "sex": "F"]
-        var d3 = d1.map { key, value in
-            "\(key) - \(value)"
-        }
-        var d4 = d1.mapValues { value in
-            "value - \(value)"
-        }
-        var d5 = d1.map { key, value in
-            1
-        }
-        print(d1) // ["name": "ha", "age": 19]
-        print(d3) // ["name - ha", "age - 19"]
-        print(d4) // ["age": "value - 19", "name": "value - ha"]
-        print(d5) // [1, 1]
-        
-        let apiResponse = [
-            "user_id": "12345",
-            "user_name": "John",
-            "user_age": "30",
-            "user_email": "john@example.com"
-        ]
-
-        // 转换API响应格式
-        let cleanedResponse = apiResponse.mapValues { value in
-            return value.replacingOccurrences(of: "user_", with: "")
-        }
-        print(cleanedResponse)
+//        var d1: [String : Any] = ["name": "ha", "age": 19]
+//        var d2: [String : Any] = ["age": 20, "sex": "F"]
+//        var d3 = d1.map { key, value in
+//            "\(key) - \(value)"
+//        }
+//        var d4 = d1.mapValues { value in
+//            "value - \(value)"
+//        }
+//        var d5 = d1.map { key, value in
+//            1
+//        }
+//        print(d1) // ["name": "ha", "age": 19]
+//        print(d3) // ["name - ha", "age - 19"]
+//        print(d4) // ["age": "value - 19", "name": "value - ha"]
+//        print(d5) // [1, 1]
+//        
+//        let apiResponse = [
+//            "user_id": "12345",
+//            "user_name": "John",
+//            "user_age": "30",
+//            "user_email": "john@example.com"
+//        ]
+//
+//        // 转换API响应格式
+//        let cleanedResponse = apiResponse.mapValues { value in
+//            return value.replacingOccurrences(of: "user_", with: "")
+//        }
+//        print(cleanedResponse)
         
     
 //        let frequencies = "hello".frequencies
 //        print(frequencies)
+        
+//        var fruits: Set = ["Apple", "Banana"]
+//
+//        // 插入元素
+//        fruits.insert("Orange")
+        
+        let numbers: Set = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        // 过滤
+        let evenNumbers = numbers.filter { $0 % 2 == 0 } // 返回数组
+        let evenSet = Set(numbers.filter { $0 % 2 == 0 }) // 转换回 Set
+
+        // 映射
+        let squaredNumbers = numbers.map { $0 * $0 } // 返回数组
+        let squaredSet = Set(numbers.map { $0 * $0 })
+
+        // 压缩映射
+        let validNumbers = numbers.compactMap { $0 > 5 ? $0 : nil }
+
+        // 归约
+        let sum = numbers.reduce(0, +)
+        let product = numbers.reduce(1, *)
+        
+        let fruits: Set = ["Apple", "Banana", "Cherry", "Date"]
+
+        // 检查是否所有元素都满足条件
+        let allLong = fruits.allSatisfy { $0.count > 3 }
+        
+        print(allLong)
+        
+        let emptyArray: [Int] = []
+        let result = emptyArray.allSatisfy { $0 > 100 }
+        print(result) // true
     }
 }
 
