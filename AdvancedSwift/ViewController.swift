@@ -62,24 +62,82 @@ class ViewController: UIViewController {
 //            acc[ageGroup, default: []].append(person)
 //        }
         
-        (1..<10).forEach { number in
-            print(number)
-            if number > 2 { return }
-            print("---------")
+//        (1..<10).forEach { number in
+//            print(number)
+//            if number > 2 { return }
+//            print("---------")
+//        }
+//        /*
+//         1
+//         ---------
+//         2
+//         ---------
+//         3
+//         4
+//         5
+//         6
+//         7
+//         8
+//         9
+//         */
+        
+//        let aaa = [("a", 1), ("b", 2), ("a", 3), ("b", 4), ("a", 5)]
+//        let bbb = Dictionary(aaa) { (first, last) in
+//            print(first, last)
+//            return first + last
+//        }
+//        print(bbb)
+//        
+//        let ccc = [("a", 1), ("b", 2), ("a", 3), ("b", 4), ("a", 5)]
+//        let ddd = Dictionary(ccc, uniquingKeysWith: { (first, _) in first })
+//        print(ddd)
+//        
+//        let eee = [("a", 1), ("b", 2), ("a", 3), ("b", 4), ("a", 5)]
+//        let fff = Dictionary(eee, uniquingKeysWith: { (_, last) in last })
+//        print(fff)
+        
+        var d1: [String : Any] = ["name": "ha", "age": 19]
+        var d2: [String : Any] = ["age": 20, "sex": "F"]
+        var d3 = d1.map { key, value in
+            "\(key) - \(value)"
         }
-        /*
-         1
-         ---------
-         2
-         ---------
-         3
-         4
-         5
-         6
-         7
-         8
-         9
-         */
+        var d4 = d1.mapValues { value in
+            "value - \(value)"
+        }
+        var d5 = d1.map { key, value in
+            1
+        }
+        print(d1) // ["name": "ha", "age": 19]
+        print(d3) // ["name - ha", "age - 19"]
+        print(d4) // ["age": "value - 19", "name": "value - ha"]
+        print(d5) // [1, 1]
+        
+        let apiResponse = [
+            "user_id": "12345",
+            "user_name": "John",
+            "user_age": "30",
+            "user_email": "john@example.com"
+        ]
+
+        // 转换API响应格式
+        let cleanedResponse = apiResponse.mapValues { value in
+            return value.replacingOccurrences(of: "user_", with: "")
+        }
+        print(cleanedResponse)
+        
+    
+//        let frequencies = "hello".frequencies
+//        print(frequencies)
+    }
+}
+
+extension Sequence where Element: Hashable {
+    var frequencies: [Element:Int] {
+        let frequencyPairs = self.map { ($0, 1) }
+//        return Dictionary(frequencyPairs, uniquingKeysWith: +)
+//        return Dictionary(frequencyPairs, uniquingKeysWith: { (first, _) in first })
+//        Dictionary(<#T##keysAndValues: Sequence##Sequence#>, uniquingKeysWith: <#T##(Value, Value) throws -> Value#>)
+        return Dictionary(frequencyPairs, uniquingKeysWith: { (_, last) in last })
     }
 }
 
