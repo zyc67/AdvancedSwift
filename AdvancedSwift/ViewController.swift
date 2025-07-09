@@ -141,33 +141,49 @@ class ViewController: UIViewController {
 //        // 插入元素
 //        fruits.insert("Orange")
         
-        let numbers: Set = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-        // 过滤
-        let evenNumbers = numbers.filter { $0 % 2 == 0 } // 返回数组
-        let evenSet = Set(numbers.filter { $0 % 2 == 0 }) // 转换回 Set
-
-        // 映射
-        let squaredNumbers = numbers.map { $0 * $0 } // 返回数组
-        let squaredSet = Set(numbers.map { $0 * $0 })
-
-        // 压缩映射
-        let validNumbers = numbers.compactMap { $0 > 5 ? $0 : nil }
-
-        // 归约
-        let sum = numbers.reduce(0, +)
-        let product = numbers.reduce(1, *)
+//        let numbers: Set = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+//
+//        // 过滤
+//        let evenNumbers = numbers.filter { $0 % 2 == 0 } // 返回数组
+//        let evenSet = Set(numbers.filter { $0 % 2 == 0 }) // 转换回 Set
+//
+//        // 映射
+//        let squaredNumbers = numbers.map { $0 * $0 } // 返回数组
+//        let squaredSet = Set(numbers.map { $0 * $0 })
+//
+//        // 压缩映射
+//        let validNumbers = numbers.compactMap { $0 > 5 ? $0 : nil }
+//
+//        // 归约
+//        let sum = numbers.reduce(0, +)
+//        let product = numbers.reduce(1, *)
+//        
+//        let fruits: Set = ["Apple", "Banana", "Cherry", "Date"]
+//
+//        // 检查是否所有元素都满足条件
+//        let allLong = fruits.allSatisfy { $0.count > 3 }
+//        
+//        print(allLong)
+//        
+//        let emptyArray: [Int] = []
+//        let result = emptyArray.allSatisfy { $0 > 100 }
+//        print(result) // true
         
-        let fruits: Set = ["Apple", "Banana", "Cherry", "Date"]
+        struct Version: Comparable {
+            let major: Int
+            let minor: Int
+            
+            static func < (lhs: Version, rhs: Version) -> Bool {
+                return (lhs.major, lhs.minor) < (rhs.major, rhs.minor)
+            }
+        }
 
-        // 检查是否所有元素都满足条件
-        let allLong = fruits.allSatisfy { $0.count > 3 }
-        
-        print(allLong)
-        
-        let emptyArray: [Int] = []
-        let result = emptyArray.allSatisfy { $0 > 100 }
-        print(result) // true
+        let versionRange = Version(major: 1, minor: 0)...Version(major: 2, minor: 5)
+        let currentVersion = Version(major: 1, minor: 8)
+
+        if versionRange.contains(currentVersion) {
+            print("版本兼容")
+        }
     }
 }
 
